@@ -394,5 +394,20 @@ window.addEventListener('load', () => {
 });
 </script>
 
-</body>
+</body><script>
+const menuBtn = document.getElementById("menuBtn");
+const dropdown = document.getElementById("dropdownMenu");
+
+menuBtn.addEventListener("click", () => {
+    dropdown.style.display =
+        dropdown.style.display === "block" ? "none" : "block";
+});
+
+window.addEventListener("click", (e) => {
+    if (!menuBtn.contains(e.target)) {
+        dropdown.style.display = "none";
+    }
+});
+</script>
+
 </html>
