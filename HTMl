@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Password Generator Pro</title>
+<style>
+    body {
+        margin: 0;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        background: #ffffff; /* full white background */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        color: #333;
+    }
+
+    .card {
+        background: #f9f9f9; /* slightly off-white card */
+        border-radius: 16px;
+        padding: 40px 30px;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.1); /* subtle shadow */
+        max-width: 450px;
+        width: 90%;
+        text-align: center;
+    }
+
+    /* Tagline */
+    .tagline {
+        font-size: 0.95rem;
+        font-weight: 500;
+        color: #666;
+        margin-bottom: 10px;
+        letter-spacing: 0.8px;
+    }
+
+    h1 {
+        margin: 0 0 30px;
+        font-size: 1.8rem;
+        font-weight: 600;
+        color: #111;
+    }
+
+    #passwordBox {
+        width: 100%;
+        padding: 15px 20px;
+        font-size: 1.4rem;
+        text-align: center;
+        border-radius: 10px;
+        border: 1px solid #ddd;
+        margin-bottom: 25px;
+        box-sizing: border-box;
+        background: #fff;
+        color: #111;
+        transition: border 0.3s;
+    }
+
+    #passwordBox:focus {
+        outline: none;
+        border-color: #1d8cf8;
+        box-shadow: 0 0 5px rgba(29,140,248,0.3);
+    }
+
+    /* Toggle switches container */
+    .options {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 25px;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .switch-label {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 0.95rem;
+        cursor: pointer;
+        user-select: none;
+        color: #333;
+    }
+
+    /* Hide default checkbox */
+    .switch-label input {
+        display: none;
+    }
+
+    /* Toggle slider */
+    .slider {
+        position: relative;
+        width: 50px;
+        height: 26px;
+        background: #ccc;
+        border-radius: 13px;
+        transition: background 0.3s;
+    }
+
+    .slider::before {
+        content: '';
+        position: absolute;
+        width: 22px;
+        height: 22px;
+        left: 2px;
+        top: 2px;
+        background: white;
+        border-radius: 50%;
+        transition: transform 0.3s;
+    }
+
+    /* Checked state */
+    .switch-label input:checked + .slider {
+        background: #1d8cf8;
+    }
+
+    .switch-label input:checked + .slider::before {
+        transform: translateX(24px);
+    }
+
+    /* Range slider */
+    .length-control {
+        margin-bottom: 30px;
+    }
+
+    .length-control label {
+        font-size: 0.95rem;
+        font-weight: 500;
+        color: #333;
+    }
+
+    input[type="range"] {
+        width: 100%;
+        margin-top: 10px;
+        cursor: pointer;
+    }
+
+    /* Buttons */
+    .buttons {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+
+    button {
+        padding: 12px 22px;
+        font-size: 0.95rem;
+        border-radius: 8px;
+        border: none;
+        cursor: pointer;
+        font-weight: 600;
+        transition: background 0.2s, transform 0.1s;
+    }
+
+    button:hover {
+        opacity: 0.9;
+    }
+
+    button:active {
+        transform: scale(0.97);
+    }
+
+    #generateBtn {
+        background-color: #1d8cf8;
+        color: white;
+        width: 100%; /* full width button like 1Password */
+    }
+
+    #copyBtn {
+        background-color: #11cdef;
+        color: white;
+    }
+
+    #editBtn {
+        background-color: #fbc658;
+        color: white;
+    }
+
+    /* Privacy statement */
+    .privacy {
+        margin-top: 20px;
+        font-size: 0.85rem;
+        color: #666;
+        line-height: 1.4;
+        text-align: center;
+        font-style: italic;
+    }
+
+    @media (max-width: 500px) {
+        h1 {
+            font-size: 1.5rem;
+        }
+        #passwordBox {
+            font-size: 1.2rem;
+        }
+    }
+</style>
+</head>
+<body>
+
+<div class="card">
+    <div class="tagline">Strong · Safe · Secure</div>
+    <h1>Password Generator</h1>
+    <input type="text" id="passwordBox" readonly>
+
+    <div class="options">
+        <label class="switch-label">
+            Letters
+            <input type="checkbox" id="letters" checked>
+            <span class="slider"></span>
+        </label>
+        <label class="switch-label">
+            Numbers
+            <input type="checkbox" id="numbers" checked>
+            <span class="slider"></span>
+        </label>
+        <label class="switch-label">
+            Symbols
+            <input type="checkbox" id="symbols" checked>
+            <span class="slider"></span>
+        </label>
+    </div>
+
+    <div class="length-control">
+        <label for="lengthRange">Password Length: <span id="lengthValue">10</span></label>
+        <input type="range" id="lengthRange" min="10" max="25" value="10">
+    </div>
+
+    <div class="buttons">
+        <button id="generateBtn">Generate</button>
+        <button id="copyBtn">Copy</button>
+        <button id="editBtn">Edit</button>
+    </div>
+
+    <!-- Privacy statement -->
+    <div class="privacy">
+        We do not share, sell, or take your information.
+    </div>
+</div>
+
+<script>
+const passwordBox = document.getElementById('passwordBox');
+const lengthRange = document.getElementById('lengthRange');
+const lengthValue = document.getElementById('lengthValue');
+const lettersCheckbox = document.getElementById('letters');
+const numbersCheckbox = document.getElementById('numbers');
+const symbolsCheckbox = document.getElementById('symbols');
+const generateBtn = document.getElementById('generateBtn');
+const copyBtn = document.getElementById('copyBtn');
+const editBtn = document.getElementById('editBtn');
+
+lengthRange.addEventListener('input', () => {
+    lengthValue.textContent = lengthRange.value;
+});
+
+function generatePassword() {
+    let chars = '';
+    if (lettersCheckbox.checked) chars += 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    if (numbersCheckbox.checked) chars += '0123456789';
+    if (symbolsCheckbox.checked) chars += '!@#$%^&*()-_=+[]{}';
+
+    if (!chars) {
+        alert('Please select at least one character type!');
+        return '';
+    }
+
+    let password = '';
+    const length = parseInt(lengthRange.value);
+    for (let i = 0; i < length; i++) {
+        password += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return password;
+}
+
+generateBtn.addEventListener('click', () => {
+    const password = generatePassword();
+    if (password) passwordBox.value = password;
+});
+
+copyBtn.addEventListener('click', () => {
+    if (!passwordBox.value) return alert('Generate a password first.');
+    navigator.clipboard.writeText(passwordBox.value)
+        .then(() => alert('Password copied!'))
+        .catch(() => alert('Failed to copy.'));
+});
+
+editBtn.addEventListener('click', () => {
+    if (!passwordBox.value) return alert('Generate a password first.');
+    passwordBox.removeAttribute('readonly');
+    passwordBox.focus();
+});
+
+// Generate initial password
+window.addEventListener('load', () => {
+    passwordBox.value = generatePassword();
+});
+</script>
+
+</body>
+</html>
