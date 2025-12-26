@@ -5,7 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Top VPN Recommendations | Password Tools</title>
 <meta name="description" content="Discover the top VPNs for privacy, security, and speed. Our recommendations are not sponsored; choose the best VPN for your needs.">
-<style>
+<style><div id="navbar"></div>
+<script>
+  fetch('navbar.html')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('navbar').innerHTML = data;
+    });
+</script>
     body {
         margin: 0;
         font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
