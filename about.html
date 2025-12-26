@@ -6,7 +6,14 @@
 
 <title>About Password Generator 1</title>
 <meta name="description" content="Learn about Password Generator 1: what it does, our privacy-first approach, and how we help users create strong, secure passwords.">
-
+<div id="navbar"></div>
+<script>
+  fetch('navbar.html')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('navbar').innerHTML = data;
+    });
+</script>
 <style>
 body {
   margin: 0;
