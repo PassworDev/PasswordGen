@@ -4,14 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Top VPN Recommendations</title>
-<style>< div id="navbar"></div>
-<script>
-  fetch('navbar.html')
-    .then(response => response.text())
-    .then(data => {
-      document.getElementById('navbar').innerHTML = data;
-    });
-</script>
+<style>
     body {
         margin: 0;
         font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -25,20 +18,6 @@
         text-align: center;
         font-size: 1.5rem;
         font-weight: bold;
-    }
-    nav {
-        display: flex;
-        justify-content: center;
-        gap: 15px;
-        margin: 15px 0;
-    }
-    nav a {
-        text-decoration: none;
-        color: #1d8cf8;
-        font-weight: 600;
-    }
-    nav a:hover {
-        text-decoration: underline;
     }
     .container {
         max-width: 800px;
@@ -83,17 +62,19 @@
 </head>
 <body>
 
+<!-- Navbar will be loaded here -->
+<div id="navbar"></div>
+<script>
+  fetch('navbar.html')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('navbar').innerHTML = data;
+    });
+</script>
+
 <header>
     Password Tools
 </header>
-
-<nav>
-    <a href="index.html">Home</a>
-    <a href="password-checker.html">Password Checker</a>
-    <a href="password-safety.html">Password Safety</a>
-    <a href="vpn.html">Top VPNs</a>
-    <a href="about.html">About</a>
-</nav>
 
 <div class="container">
     <h1>Top VPN Recommendations</h1>
