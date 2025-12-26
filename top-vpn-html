@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Top VPN Recommendations</title>
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #fff;
+  color: #222;
+}
+header {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 30px 0;
+}
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+ul.vpn-list {
+  list-style: none;
+  padding: 0;
+}
+.vpn-list li {
+  background: #f9f9f9;
+  border-radius: 10px;
+  padding: 15px 20px;
+  margin-bottom: 15px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.12);
+}
+.vpn-list a {
+  color: #1d8cf8;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 1.1rem;
+}
+.vpn-list a:hover {
+  text-decoration: underline;
+}
+.note {
+  font-size: 0.85rem;
+  color: #666;
+  text-align: center;
+  margin-top: 25px;
+  font-style: italic;
+}
+</style>
+</head>
+<body>
+
+<header>Password Tools & VPN Recommendations</header>
+
+<div class="container">
+<h1>Top VPN Recommendations</h1>
+
+<ul class="vpn-list">
+<li><a href="https://protonvpn.com/" target="_blank" rel="noopener noreferrer">ProtonVPN</a></li>
+<li><a href="https://www.expressvpn.com/" target="_blank" rel="noopener noreferrer">ExpressVPN</a></li>
+<li><a href="https://nordvpn.com/" target="_blank" rel="noopener noreferrer">NordVPN</a></li>
+<li><a href="https://surfshark.com/" target="_blank" rel="noopener noreferrer">Surfshark</a></li>
+</ul>
+
+<p class="note">These VPN recommendations are <strong>not sponsored</strong>. Recommended based on reliability, security, and speed.</p>
+</div>
+
+</body>
+</html>
